@@ -1,4 +1,4 @@
-package com.example.terrus_quest
+package com.example.formulize
 
 import io.flutter.embedding.android.FlutterActivity
 

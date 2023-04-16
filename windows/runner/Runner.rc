@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "terrus_quest" "\0"
+            VALUE "FileDescription", "formulize" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "terrus_quest" "\0"
+            VALUE "InternalName", "formulize" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "terrus_quest.exe" "\0"
-            VALUE "ProductName", "terrus_quest" "\0"
+            VALUE "OriginalFilename", "formulize.exe" "\0"
+            VALUE "ProductName", "formulize" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

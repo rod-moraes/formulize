@@ -1,4 +1,4 @@
-# Terrus Quest
+# Formulize
 
 Aplicativo para gerenciar e criar novas respostas de um questionário e sincronizadas na nuvem após os dados serem salvos localmente (**Offline-first**).
 
