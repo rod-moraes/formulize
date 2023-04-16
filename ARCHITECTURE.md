@@ -19,6 +19,8 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 
 # Entidades
 
+![image](github/images/entities.png)
+
 # Casos de Uso
 
 # Design Patterns

@@ -30,7 +30,7 @@ Somente o super usuário pode criar ou editar um formulário.
 
 ## 1.2 Criação de perguntas para um formulário (super usuário).
 
-O usuário poderá criar um número ilimitado de perguntas para um formulário, cada pergunta tem um tipo e pode receber apenas uma resposta
+O usuário poderá criar um número ilimitado de perguntas para um formulário, cada pergunta tem um tipo e pode receber apenas uma resposta (exceto o campo checkbox)
 
 Os tipos de campos de pergunta aceitos são: DROPDOWN(SELECT), TEXT, CHECKBOX, DATETIME, TIME, SWITCH
 
