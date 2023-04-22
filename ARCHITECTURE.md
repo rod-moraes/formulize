@@ -23,38 +23,37 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 
 # Casos de Uso
 **Board Formulário**
-- Carregar formulários
-- Excluir formulário
+- Carregar formulários (Forms)
+- Excluir formulário (Forms)
 
 **Criação/Edição de Formulário**
-- Carregar dados do formulário
-- Excluir uma pergunta do formulário 
-- Criar/Editar formulário
-- Excluir formulário
+- Carregar dados do formulário (Forms + Status)
+- Excluir uma pergunta do formulário (Question)
+- Criar/Editar formulário (Forms)
+- Excluir formulário (Forms)
 
 **Criação/Edição perguntas de Formulário**
-- Carregar dados da pergunta
-- Criar/Editar perguntas de formulário
-- Excluir pergunta do formulário
+- Carregar dados da pergunta (Question + TypeQuestion)
+- Criar/Editar perguntas de formulário (Question)
+- Excluir pergunta do formulário (Question)
 
 **Cadastrar/Editar respostas de Formulário**
-- Carregar perguntas
-- Carregar respostas
-- Salvar respostas do formulário
+- Carregar perguntas/respostas (AnswerHead)
+- Salvar respostas do formulário (AnswerHead)
 
 **Board de respostas de Formulário**
-- Carregar repostas
-- Excluir respostas
+- Carregar repostas (AnswerHead)
+- Excluir respostas (AnswerHead)
 
 **Configuraões**
-- Validar senha de super usuário
-- Modificar senha de super usuário
-- Carregar configurações
-- Salvar configurações
+- Validar senha de super usuário (Config)
+- Modificar senha de super usuário (Config)
+- Carregar configurações (Config)
+- Salvar configurações (Config)
 
 **Sincronização**
-- DownloadBoards
-- UploadBoards
+- DownloadBoards (Sync + Forms + AnswerHead)
+- UploadBoards (Sync + Forms + AnswerHead)
 
 # Design Patterns
 
