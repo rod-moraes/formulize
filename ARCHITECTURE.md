@@ -62,7 +62,8 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 - Service Pattern: Para isolar trechos de códigos com outras responsabilidades.
 - Entity Pattern: Para definir as entidades da aplicação
 - Dependency Injection: Resolver dependências das classes.
-- Store: Guardar e mudar estados.
+- Atomic State Pattern: Para isolar todos os states e actions.
+- Reducer Pattern: Para isolar todas as Business rules.
 - State pattern: Padrão que auxilia no gerenciamento estados.
 - Adapter: Converter um objeto em outro.
 - Result: Trabalhar com retorno Múltiplo.
@@ -73,3 +74,8 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 - flutter_modular: Modularização de rotas e injeção de dependências.
 - realm: Banco de dados e sincronização
 - rx_notifier: Gerenciamento de estado
+- asuka: Snackbars e overlays personalizadas
+- loader_overlay: Overlay de loader
+- uno: Cliente HTTP.
+- Mocktail: Para testes de unidade.
+- intl: Internacionalização.
