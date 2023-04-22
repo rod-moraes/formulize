@@ -22,6 +22,39 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 ![image](github/images/entities.png)
 
 # Casos de Uso
+**Board Formulário**
+- Carregar formulários
+- Excluir formulário
+
+**Criação/Edição de Formulário**
+- Carregar dados do formulário
+- Excluir uma pergunta do formulário 
+- Criar/Editar formulário
+- Excluir formulário
+
+**Criação/Edição perguntas de Formulário**
+- Carregar dados da pergunta
+- Criar/Editar perguntas de formulário
+- Excluir pergunta do formulário
+
+**Cadastrar/Editar respostas de Formulário**
+- Carregar perguntas
+- Carregar respostas
+- Salvar respostas do formulário
+
+**Board de respostas de Formulário**
+- Carregar repostas
+- Excluir respostas
+
+**Configuraões**
+- Validar senha de super usuário
+- Modificar senha de super usuário
+- Carregar configurações
+- Salvar configurações
+
+**Sincronização**
+- DownloadBoards
+- UploadBoards
 
 # Design Patterns
 
