@@ -12,7 +12,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  result: ^1.0.4
+  result_dart: ^1.0.5
   flutter_modular: ^5.0.3
   realm: ^1.0.3
   rx_notifier: ^2.2.2

@@ -50,6 +50,7 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 - Modificar senha de super usuário (Config)
 - Carregar configurações (Config)
 - Salvar configurações (Config)
+- Resetar configurações (Config)
 
 **Sincronização**
 - DownloadBoards (Sync + Forms + AnswerHead)
@@ -70,7 +71,7 @@ Pontos a serem levados em consideração antes de introduzir uma nova feature:
 
 # Package externos
 
-- result: Retorno múltiplo no formato Failure e Success.
+- result_dart: Retorno múltiplo no formato Failure e Success.
 - flutter_modular: Modularização de rotas e injeção de dependências.
 - realm: Banco de dados e sincronização
 - rx_notifier: Gerenciamento de estado
