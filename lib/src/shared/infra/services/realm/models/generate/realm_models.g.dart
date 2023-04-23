@@ -91,7 +91,7 @@ class Sync extends _Sync with RealmEntity, RealmObjectBase, RealmObject {
 
 class Status extends _Status with RealmEntity, RealmObjectBase, RealmObject {
   Status(
-    Uuid id,
+    String id,
     String title,
   ) {
     RealmObjectBase.set(this, 'id', id);
@@ -101,9 +101,9 @@ class Status extends _Status with RealmEntity, RealmObjectBase, RealmObject {
   Status._();
 
   @override
-  Uuid get id => RealmObjectBase.get<Uuid>(this, 'id') as Uuid;
+  String get id => RealmObjectBase.get<String>(this, 'id') as String;
   @override
-  set id(Uuid value) => RealmObjectBase.set(this, 'id', value);
+  set id(String value) => RealmObjectBase.set(this, 'id', value);
 
   @override
   String get title => RealmObjectBase.get<String>(this, 'title') as String;
@@ -122,7 +122,7 @@ class Status extends _Status with RealmEntity, RealmObjectBase, RealmObject {
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(Status._);
     return const SchemaObject(ObjectType.realmObject, Status, 'Status', [
-      SchemaProperty('id', RealmPropertyType.uuid, primaryKey: true),
+      SchemaProperty('id', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('title', RealmPropertyType.string),
     ]);
   }
@@ -293,10 +293,14 @@ class Answer extends _Answer with RealmEntity, RealmObjectBase, RealmObject {
 class AnswerHead extends _AnswerHead
     with RealmEntity, RealmObjectBase, RealmObject {
   AnswerHead(
-    Uuid id, {
+    Uuid id,
+    String name,
+    String email, {
     Iterable<Answer> answers = const [],
   }) {
     RealmObjectBase.set(this, 'id', id);
+    RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'email', email);
     RealmObjectBase.set<RealmList<Answer>>(
         this, 'answers', RealmList<Answer>(answers));
   }
@@ -307,6 +311,16 @@ class AnswerHead extends _AnswerHead
   Uuid get id => RealmObjectBase.get<Uuid>(this, 'id') as Uuid;
   @override
   set id(Uuid value) => RealmObjectBase.set(this, 'id', value);
+
+  @override
+  String get name => RealmObjectBase.get<String>(this, 'name') as String;
+  @override
+  set name(String value) => RealmObjectBase.set(this, 'name', value);
+
+  @override
+  String get email => RealmObjectBase.get<String>(this, 'email') as String;
+  @override
+  set email(String value) => RealmObjectBase.set(this, 'email', value);
 
   @override
   RealmList<Answer> get answers =>
@@ -329,6 +343,8 @@ class AnswerHead extends _AnswerHead
     return const SchemaObject(
         ObjectType.realmObject, AnswerHead, 'AnswerHead', [
       SchemaProperty('id', RealmPropertyType.uuid, primaryKey: true),
+      SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('email', RealmPropertyType.string),
       SchemaProperty('answers', RealmPropertyType.object,
           linkTarget: 'Answer', collectionType: RealmCollectionType.list),
     ]);
