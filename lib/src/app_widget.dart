@@ -21,6 +21,7 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   void initState() {
     super.initState();
+    appAtomic.init();
   }
 
   @override

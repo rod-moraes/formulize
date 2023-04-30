@@ -1,6 +1,4 @@
 import 'package:asuka/asuka.dart';
-import 'package:flutter/material.dart';
-import 'package:formulize/src/modules/configuration/domain/usecases/load_data_config.dart';
 import 'package:formulize/src/modules/configuration/domain/usecases/modify_pass_user.dart';
 import 'package:formulize/src/modules/configuration/domain/usecases/save_data_config.dart';
 import 'package:formulize/src/modules/configuration/domain/usecases/validate_pass_user.dart';
@@ -10,42 +8,23 @@ import '../../../../shared/presenter/atoms/app_atomic.dart';
 
 class ConfigReducer extends RxReducer {
   final AppAtomic appAtomic;
-  final ILoadDataConfig _loadDataConfig;
   final IModifyPassUser _modifyPassUser;
   final ISaveDataConfig _saveDataConfig;
   final IValidatePassUser _validatePassUser;
 
   ConfigReducer(
     this.appAtomic,
-    this._loadDataConfig,
     this._modifyPassUser,
     this._saveDataConfig,
     this._validatePassUser,
   ) {
     //actions
-    on(() => [appAtomic.init.value], _init);
     on(() => [appAtomic.deleteApp.value], _deleteApp);
     on(() => [appAtomic.validateSuperUserPass.value], _validateSuperUserPass);
     on(() => [appAtomic.blockedSuperUser.value], _blockedSuperUser);
     //atoms
     on(() => [appAtomic.saveThemeMode.value], _saveThemeMode);
     on(() => [appAtomic.modifySuperUserPass.value], _saveSuperUserPass);
-  }
-
-  Future<void> _init() async {
-    final config = await _loadDataConfig();
-    config.fold(
-      (success) {
-        appAtomic.themeMode.value = _getThemeModeByName(success.themeModeName);
-        Asuka.removeCurrentSnackBar();
-        AsukaSnackbar.success('Sucesso ao carregar configurações locais')
-            .show();
-      },
-      (failure) {
-        Asuka.removeCurrentSnackBar();
-        AsukaSnackbar.alert(failure.message).show();
-      },
-    );
   }
 
   void _deleteApp() {}
@@ -110,9 +89,5 @@ class ConfigReducer extends RxReducer {
         AsukaSnackbar.alert(failure.message).show();
       },
     );
-  }
-
-  ThemeMode _getThemeModeByName(String name) {
-    return ThemeMode.values.firstWhere((mode) => mode.name == name);
   }
 }

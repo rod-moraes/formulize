@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'domain/repository/iconfig_repository.dart';
-import 'domain/usecases/load_data_config.dart';
 import 'domain/usecases/modify_pass_user.dart';
 import 'domain/usecases/save_data_config.dart';
 import 'domain/usecases/validate_pass_user.dart';
@@ -23,9 +22,6 @@ class ConfigurationModule extends Module {
           (i) => ConfigRepository(i()),
         ),
         // usecases
-        Bind.factory<ILoadDataConfig>(
-          (i) => LoadDataConfig(i()),
-        ),
         Bind.factory<IModifyPassUser>(
           (i) => ModifyPassUser(i()),
         ),
@@ -38,7 +34,6 @@ class ConfigurationModule extends Module {
         // reducers
         Bind.singleton<ConfigReducer>(
           (i) => ConfigReducer(
-            i(),
             i(),
             i(),
             i(),

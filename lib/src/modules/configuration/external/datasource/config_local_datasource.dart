@@ -9,11 +9,6 @@ class ConfigLocalDatasource implements IConfigDatasource {
   const ConfigLocalDatasource(this.realm);
 
   @override
-  Future<Config> loadDataConfig() async {
-    return _getConfiguration();
-  }
-
-  @override
   Future<Config> modifyPassUser(String newPassword, String oldPassword) async {
     final validate = await validatePassUser(oldPassword);
     if (!validate) throw 'Senha digitada inválida';

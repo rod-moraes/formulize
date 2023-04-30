@@ -48,12 +48,6 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    appAtomic.init();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final themeMode = context.select(() => appAtomic.themeMode.value);
     final isValidate = context.select(() => appAtomic.isValidateUser.value);

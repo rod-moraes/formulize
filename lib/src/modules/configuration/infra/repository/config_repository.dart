@@ -9,9 +9,6 @@ class ConfigRepository implements IConfigRepository {
     this.datasource,
   );
   @override
-  Future<Config> loadDataConfig() async => datasource.loadDataConfig();
-
-  @override
   Future<Config> modifyPassUser(String newPassword, String oldPassword) async =>
       datasource.modifyPassUser(newPassword, oldPassword);
 

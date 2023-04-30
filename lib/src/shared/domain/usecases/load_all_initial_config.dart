@@ -1,18 +1,16 @@
 import 'package:formulize/src/core/errors/failures.dart';
-import 'package:formulize/src/modules/configuration/domain/repository/iconfig_repository.dart';
+import 'package:formulize/src/shared/infra/services/realm/models/generate/realm_models.dart';
 import 'package:result_dart/result_dart.dart';
 
-import '../../../../shared/infra/services/realm/models/generate/realm_models.dart';
+import '../repository/iinitial_config_repository.dart';
 
-abstract class ILoadDataConfig {
+abstract class ILoadAllInitialConfig {
   Future<Result<Config, IFailure>> call();
 }
 
-class LoadDataConfig implements ILoadDataConfig {
-  final IConfigRepository repository;
-  const LoadDataConfig(
-    this.repository,
-  );
+class LoadDataConfig implements ILoadAllInitialConfig {
+  final IInitialConfigRepository repository;
+  const LoadDataConfig(this.repository);
 
   @override
   Future<Result<Config, IFailure>> call() async {
