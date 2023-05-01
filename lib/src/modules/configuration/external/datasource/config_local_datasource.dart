@@ -1,6 +1,7 @@
 import 'package:realm/realm.dart';
 
 import '../../../../shared/infra/services/realm/models/generate/realm_models.dart';
+import '../../../../shared/infra/services/realm/realm_config.dart';
 import '../../infra/datasource/iconfig_datasource.dart';
 
 class ConfigLocalDatasource implements IConfigDatasource {
@@ -32,13 +33,14 @@ class ConfigLocalDatasource implements IConfigDatasource {
   }
 
   Config _getConfiguration() {
-    return realm.all<Config>().single;
+    return realm.query<Config>(r'id == $0', [auth.id]).single;
   }
 
   void _saveConfiguration(String? themeModeName, String? password) {
     final model = _getConfiguration();
     realm.write(() {
       model
+        ..id = model.id
         ..themeModeName = themeModeName ?? model.themeModeName
         ..superUserPass = password ?? model.superUserPass;
     });

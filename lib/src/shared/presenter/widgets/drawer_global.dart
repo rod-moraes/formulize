@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:formulize/src/shared/presenter/atoms/app_atomic.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class DrawerGlobal extends StatelessWidget {
   const DrawerGlobal({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final appStore = context.watch<AppStore>((store) => store.syncDate);
-    // final syncDate = appStore.syncDate.value;
-    // var syncDateText = 'Nunca';
-    // if (syncDate != null) {
-    //   final format = DateFormat('dd/MM/yyyy ás hh:mm');
-    //   syncDateText = format.format(syncDate);
-    // }
+    final appAtomic = Modular.get<AppAtomic>();
+    final syncDateText = context.select(() => appAtomic.syncDateText);
     return NavigationDrawer(
-      onDestinationSelected: (index) {
+      onDestinationSelected: (index) async {
+        if (index == 0) {
+          appAtomic.syncData();
+        }
         if (index == 1) {
           Modular.to.pop();
-          Modular.to.pushNamed('/config/');
+          await Modular.to.pushNamed('/config/');
         }
       },
       children: [
@@ -37,13 +37,14 @@ class DrawerGlobal extends StatelessWidget {
                 const Text('Sincronizar'),
                 const Spacer(),
                 Text(
-                  'Nunca',
+                  syncDateText,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
             ),
           ),
         ),
+        const SizedBox(height: 16),
         const NavigationDrawerDestination(
           icon: Icon(Icons.settings),
           label: Text('Configurações'),

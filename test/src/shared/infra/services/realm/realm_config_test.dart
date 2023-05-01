@@ -1,17 +1,20 @@
+import 'dart:io';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formulize/src/shared/infra/services/realm/models/generate/realm_models.dart';
 import 'package:formulize/src/shared/infra/services/realm/realm_config.dart';
-import 'package:realm/realm.dart';
 
-void main() {
+void main() async {
   /// For running Flutter widget and unit tests run the following command to
   /// install the required native binaries.
   ///
   /// `flutter pub run realm install`
 
-  final configRealm = config;
-  final realm = Realm(configRealm);
+  // Loading from a static string.
+  dotenv.testLoad(fileInput: await File('.env').readAsString());
 
+  final realm = await getRealmInstanceTest();
   test('Initial configuration Realm', () {
     final syncData = realm.all<Sync>();
     final configData = realm.all<Config>();
@@ -22,16 +25,18 @@ void main() {
     final answerHeadData = realm.all<AnswerHead>();
     final formsData = realm.all<Forms>();
 
-    expect(syncData.isEmpty, true);
+    expect(syncData.isNotEmpty, true);
+    expect(syncData.length, 1);
+    expect(auth.id, syncData.first.idDevice);
     expect(configData.isNotEmpty, true);
     expect(configData.length, 1);
     expect(
       configData.single.superUserPass,
-      Config('system', '12345').superUserPass,
+      Config(auth.id, 'system', '12345').superUserPass,
     );
     expect(
       configData.single.themeModeName,
-      Config('system', '12345').themeModeName,
+      Config(auth.id, 'system', '12345').themeModeName,
     );
     expect(statusData.isNotEmpty, true);
     expect(statusData.length, StatusForms.values.length);

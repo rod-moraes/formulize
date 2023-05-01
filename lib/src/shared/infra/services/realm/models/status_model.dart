@@ -3,6 +3,7 @@ part of './generate/realm_models.dart';
 @RealmModel()
 class _Status {
   @PrimaryKey()
+  @MapTo('_id')
   late String id;
   late String title;
 }
