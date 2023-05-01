@@ -15,14 +15,16 @@ class AppAtomic {
     final syncDate = this.syncDate.value;
     var syncDateText = 'Nunca';
     if (syncDate != null) {
-      final format = DateFormat('dd/MM/yyyy ás hh:mm');
-      syncDateText = format.format(syncDate);
+      final format = DateFormat('dd/MM/yyyy - HH:mm:ss');
+      syncDateText = format.format(syncDate.toLocal());
     }
     return syncDateText;
   }
 
   // actions
   final init = RxNotifier(null);
+  final syncData = RxNotifier(null);
+  final finishInit = RxNotifier(null);
   final saveThemeMode = RxNotifier(null);
   final validateSuperUserPass = RxNotifier(null);
   final blockedSuperUser = RxNotifier(null);
