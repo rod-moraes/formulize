@@ -11,7 +11,6 @@ class _TypeQuestion {
 }
 
 enum TypeQuestionForms {
-  dropdown('0'),
   text('1'),
   checkbox('2'),
   datetime('3'),
@@ -23,6 +22,29 @@ enum TypeQuestionForms {
 
   TypeQuestion get toTypeQuestion {
     return TypeQuestion(id, name);
+  }
+
+  Widget Function({
+    required Question data,
+    required void Function(String) onChanged,
+    required FocusNode focusNode,
+    required void Function(String)? onFieldSubmitted,
+    required void Function()? onCallbackNoValid,
+    String? initialValue,
+    Key? key,
+  }) get widget {
+    switch (this) {
+      case TypeQuestionForms.text:
+        return FieldTextCustom.new;
+      case TypeQuestionForms.checkbox:
+        return FieldCheckCustom.new;
+      case TypeQuestionForms.datetime:
+        return FieldDateCustom.new;
+      case TypeQuestionForms.switchType:
+        return FieldSwitchCustom.new;
+      case TypeQuestionForms.time:
+        return FieldTimeCustom.new;
+    }
   }
 
   static TypeQuestionForms? fromQuestion(TypeQuestion? question) {

@@ -43,6 +43,7 @@ class _EditFormPageState extends State<EditFormPage> {
       formAtomic.questions.value = widget.forms!.questions;
       formAtomic.title.value = widget.forms!.title;
       formAtomic.id.value = widget.forms!.id;
+      formAtomic.answer.value = widget.forms!.answers;
       if (widget.forms!.status != null) {
         formAtomic.status.value = StatusForms.fromStatus(widget.forms!.status!);
       }
@@ -163,19 +164,28 @@ class _EditFormPageState extends State<EditFormPage> {
                                           if (question == null) {
                                             formAtomic.question.value =
                                                 quest.value;
-                                            formAtomic.questions.value
-                                                .remove(quest.value);
-                                            formAtomic.questions.value = [
-                                              ...questions
-                                            ];
+                                            formAtomic.questions.value =
+                                                formAtomic.questions.value
+                                                    .where(
+                                                      (element) =>
+                                                          element.id !=
+                                                          quest.value.id,
+                                                    )
+                                                    .toList();
                                           }
                                         },
                                         onTapDelete: () {
-                                          formAtomic.questions.value
-                                              .remove(quest.value);
-                                          formAtomic.questions.value = [
-                                            ...questions
-                                          ];
+                                          formAtomic.questions.value =
+                                              formAtomic.questions.value
+                                                  .where(
+                                                    (element) =>
+                                                        element.id !=
+                                                        quest.value.id,
+                                                  )
+                                                  .toList();
+                                          // formAtomic.questions.value = [
+                                          //   ...questions
+                                          // ];
                                         },
                                       ),
                                     ),

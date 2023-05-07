@@ -72,7 +72,15 @@ class _HomePageState extends State<HomePage> {
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(16)),
                           ),
-                          onTap: () {},
+                          onTap: () async {
+                            if (form.status?.id == StatusForms.active.id) {
+                              await Modular.to.pushNamed(
+                                '../form/new-answer',
+                                arguments: form,
+                              );
+                              atomic.init();
+                            }
+                          },
                           title: Text(
                             form.title,
                           ),
@@ -83,15 +91,30 @@ class _HomePageState extends State<HomePage> {
                             size: 32,
                           ),
                           trailing: isSuperUser
-                              ? IconButton(
-                                  onPressed: () async {
-                                    await Modular.to.pushNamed(
-                                      '../form/edit',
-                                      arguments: form,
-                                    );
-                                    atomic.init();
-                                  },
-                                  icon: const Icon(Icons.edit),
+                              ? Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () async {
+                                        await Modular.to.pushNamed(
+                                          '../form/view-answers',
+                                          arguments: form,
+                                        );
+                                        atomic.init();
+                                      },
+                                      icon: const Icon(Icons.read_more),
+                                    ),
+                                    IconButton(
+                                      onPressed: () async {
+                                        await Modular.to.pushNamed(
+                                          '../form/edit',
+                                          arguments: form,
+                                        );
+                                        atomic.init();
+                                      },
+                                      icon: const Icon(Icons.edit),
+                                    ),
+                                  ],
                                 )
                               : null,
                           subtitle: Text(

@@ -7,9 +7,11 @@ class EditFormAtomic {
   // atoms
   final question = RxNotifier<Question?>(null);
   final questions = RxNotifier<List<Question>>([]);
+  final answer = RxNotifier<List<AnswerHead>>([]);
   final title = RxNotifier<String>('');
   final status = RxNotifier<StatusForms>(StatusForms.active);
   final id = RxNotifier<Uuid?>(null);
+  final answerEdit = RxNotifier<AnswerHead>(AnswerHead(Uuid.v4(), '', ''));
 
   // computed
   Forms get forms => Forms(
@@ -17,8 +19,10 @@ class EditFormAtomic {
         title.value,
         status: status.value.toStatus,
         questions: questions.value,
+        answers: answer.value,
       );
 
   // actions
   final saveData = RxNotifier(null);
+  final saveNewAnswerData = RxNotifier(null);
 }
