@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:formulize/src/modules/form/presenter/pages/answer_form_page.dart';
 import 'package:formulize/src/modules/form/presenter/pages/edit_form_page.dart';
+import 'package:formulize/src/modules/form/presenter/pages/view_answers_page.dart';
 import 'package:formulize/src/modules/form/presenter/reducers/edit_form_reducer.dart';
 
 import 'domain/repository/iform_repository.dart';
@@ -36,6 +38,14 @@ class FormModule extends Module {
         ChildRoute(
           '/edit',
           child: (context, args) => EditFormPage(forms: args.data),
+        ),
+        ChildRoute(
+          '/new-answer',
+          child: (context, args) => AnswerFormPage(forms: args.data),
+        ),
+        ChildRoute(
+          '/view-answers',
+          child: (context, args) => ViewAnswersPage(forms: args.data),
         ),
       ];
 }
