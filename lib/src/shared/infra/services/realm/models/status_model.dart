@@ -19,4 +19,8 @@ enum StatusForms {
   Status get toStatus {
     return Status(id, title);
   }
+
+  static StatusForms fromStatus(Status status) {
+    return StatusForms.values.firstWhere((element) => element.id == status.id);
+  }
 }

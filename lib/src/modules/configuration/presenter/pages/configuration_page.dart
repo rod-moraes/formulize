@@ -55,75 +55,77 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
       appBar: AppBar(
         title: const Text('FORMULIZE'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Configurações',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Tema',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 10),
-            RadioListTile(
-              value: ThemeMode.system,
-              groupValue: themeMode,
-              onChanged: _onChangedTheme,
-              title: const Text('Sistema'),
-            ),
-            RadioListTile(
-              value: ThemeMode.light,
-              groupValue: themeMode,
-              onChanged: _onChangedTheme,
-              title: const Text('Claro'),
-            ),
-            RadioListTile(
-              value: ThemeMode.dark,
-              groupValue: themeMode,
-              onChanged: _onChangedTheme,
-              title: const Text('Escuro'),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Super usuário',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 10),
-            OutlinedButton(
-              onPressed: isValidate
-                  ? appAtomic.blockedSuperUser.call
-                  : _onValidatePassword,
-              child: Text(
-                isValidate
-                    ? 'Bloquear super usuário'
-                    : 'Desbloquear super usuário',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Configurações',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-            ),
-            const SizedBox(height: 10),
-            OutlinedButton(
-              onPressed: isValidate ? _onModifyPassword : null,
-              child: Text(
-                isValidate
-                    ? 'Modificar senha de super usuário'
-                    : 'Usuário bloqueado',
+              const SizedBox(height: 20),
+              Text(
+                'Tema',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Controle de dados',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 10),
-            OutlinedButton(
-              onPressed: appAtomic.deleteApp,
-              child: const Text('Apagar cache e reiniciar o app'),
-            ),
-          ],
+              const SizedBox(height: 10),
+              RadioListTile(
+                value: ThemeMode.system,
+                groupValue: themeMode,
+                onChanged: _onChangedTheme,
+                title: const Text('Sistema'),
+              ),
+              RadioListTile(
+                value: ThemeMode.light,
+                groupValue: themeMode,
+                onChanged: _onChangedTheme,
+                title: const Text('Claro'),
+              ),
+              RadioListTile(
+                value: ThemeMode.dark,
+                groupValue: themeMode,
+                onChanged: _onChangedTheme,
+                title: const Text('Escuro'),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Super usuário',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton(
+                onPressed: isValidate
+                    ? appAtomic.blockedSuperUser.call
+                    : _onValidatePassword,
+                child: Text(
+                  isValidate
+                      ? 'Bloquear super usuário'
+                      : 'Desbloquear super usuário',
+                ),
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton(
+                onPressed: isValidate ? _onModifyPassword : null,
+                child: Text(
+                  isValidate
+                      ? 'Modificar senha de super usuário'
+                      : 'Usuário bloqueado',
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'Controle de dados',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton(
+                onPressed: appAtomic.deleteApp,
+                child: const Text('Apagar cache e reiniciar o app'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -51,6 +51,22 @@ void _configSubscriptions(Realm realm) {
       ..add(
         realm.all<TypeQuestion>(),
         update: true,
+      )
+      ..add(
+        realm.all<Forms>(),
+        update: true,
+      )
+      ..add(
+        realm.all<Question>(),
+        update: true,
+      )
+      ..add(
+        realm.all<Answer>(),
+        update: true,
+      )
+      ..add(
+        realm.all<AnswerHead>(),
+        update: true,
       );
   });
 }
