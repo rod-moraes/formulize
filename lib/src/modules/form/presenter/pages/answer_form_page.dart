@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:realm/realm.dart';
 
 import '../../../../shared/infra/services/realm/models/generate/realm_models.dart';
+import '../../../../shared/infra/services/realm/realm_config.dart';
 import '../atoms/edit_form_atomic.dart';
 
 class AnswerFormPage extends StatefulWidget {
@@ -79,12 +80,12 @@ class _AnswerFormPageState extends State<AnswerFormPage> {
                   onChanged: (value) =>
                       formAtomic.answerEdit.value.name = value,
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 ...widget.forms.questions.map((question) {
                   final type = TypeQuestionForms.fromQuestion(question.type);
                   if (type == null) return Container();
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 16),
                     child: type.widget(
                       data: question,
                       focusNode: FocusNode(),
@@ -97,16 +98,17 @@ class _AnswerFormPageState extends State<AnswerFormPage> {
                         answerEdition.answers.add(
                           Answer(
                             Uuid.v4(),
+                            auth.id,
                             value,
                             question: question,
                           ),
                         );
-                        print(formAtomic.answerEdit.value);
                       },
                       onFieldSubmitted: (value) {},
                     ),
                   );
-                })
+                }),
+                const SizedBox(height: 48),
               ],
             ),
           ),

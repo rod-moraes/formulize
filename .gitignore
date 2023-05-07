@@ -33,6 +33,7 @@ migrate_working_dir/
 .pub/
 /build/
 /mongodb-realm/
+/formulize_setup/setup/
 
 # Symbolication related
 app.*.symbols

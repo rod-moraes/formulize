@@ -6,18 +6,23 @@ import 'package:formulize/src/shared/infra/services/realm/models/generate/realm_
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
+import '../../../../shared/presenter/atoms/app_atomic.dart';
+
 class HomeReducer extends RxReducer {
   final HomeAtomic _atomic;
+  final AppAtomic _appAtomic;
   final IGetForms _getForms;
 
   HomeReducer(
     this._atomic,
     this._getForms,
+    this._appAtomic,
   ) {
     //actions
     on(() => [_atomic.init.value], _init);
     //atoms
     on(() => [_atomic.filter.value], _init);
+    on(() => [_appAtomic.syncDate.value], _init);
   }
 
   Future<void> _init() async {

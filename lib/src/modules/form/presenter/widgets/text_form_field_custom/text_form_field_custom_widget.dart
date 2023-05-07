@@ -84,7 +84,9 @@ class _TextFormFieldCustomWidgetState extends State<TextFormFieldCustomWidget> {
         initialValue: widget.text,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
-          labelText: widget.isRequired ? '${widget.label} *' : widget.label,
+          labelText: widget.isRequired && widget.label != null
+              ? '${widget.label} *'
+              : widget.label,
           focusColor: widget.focusColor,
           hintText: widget.hintText,
           isDense: widget.isDense,

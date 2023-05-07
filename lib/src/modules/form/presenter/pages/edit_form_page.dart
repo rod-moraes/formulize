@@ -5,6 +5,7 @@ import 'package:realm/realm.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
 import '../../../../shared/infra/services/realm/models/generate/realm_models.dart';
+import '../../../../shared/infra/services/realm/realm_config.dart';
 import '../atoms/edit_form_atomic.dart';
 import '../widgets/card_question_widget.dart';
 
@@ -25,6 +26,7 @@ class _EditFormPageState extends State<EditFormPage> {
 
   Question _createQuestionEmpty() => Question(
         Uuid.v4(),
+        auth.id,
         '',
         '',
         type: TypeQuestionForms.text.toTypeQuestion,

@@ -53,19 +53,19 @@ void _configSubscriptions(Realm realm) {
         update: true,
       )
       ..add(
-        realm.all<Forms>(),
+        realm.query<Forms>(r'idDevice == $0', [auth.id]),
         update: true,
       )
       ..add(
-        realm.all<Question>(),
+        realm.query<Question>(r'idDevice == $0', [auth.id]),
         update: true,
       )
       ..add(
-        realm.all<Answer>(),
+        realm.query<Answer>(r'idDevice == $0', [auth.id]),
         update: true,
       )
       ..add(
-        realm.all<AnswerHead>(),
+        realm.query<AnswerHead>(r'idDevice == $0', [auth.id]),
         update: true,
       );
   });
@@ -85,6 +85,86 @@ void _initialDataConfigRealm(Realm realm) {
       () => realm.add(TypeQuestion(typeQuestion.id, typeQuestion.name)),
     );
   }
+  final questions = [
+    realm.write<Question>(
+      () => realm.add<Question>(
+        update: true,
+        Question(
+          Uuid.v4(),
+          auth.id,
+          'Digite sua resposta.',
+          '1. Se você pudesse ter uma tecnologia, que resolvesse um problema '
+              'na produção do seu café , onde seria?',
+          type: TypeQuestionForms.text.toTypeQuestion,
+        ),
+      ),
+    ),
+    realm.write<Question>(
+      () => realm.add<Question>(
+        update: true,
+        Question(
+          Uuid.v4(),
+          auth.id,
+          'Digite sua resposta.',
+          '2. Em qual ponto, em toda sua produção de café, '
+              'você gasta mais mão de obra?',
+          type: TypeQuestionForms.text.toTypeQuestion,
+        ),
+      ),
+    ),
+    realm.write<Question>(
+      () => realm.add<Question>(
+        update: true,
+        Question(
+          Uuid.v4(),
+          auth.id,
+          'Digite sua resposta.',
+          '3. Em qual ponto, em toda sua produção de café, '
+              'você tem mais gastos ?',
+          type: TypeQuestionForms.text.toTypeQuestion,
+        ),
+      ),
+    ),
+    realm.write<Question>(
+      () => realm.add<Question>(
+        update: true,
+        Question(
+          Uuid.v4(),
+          auth.id,
+          'Digite sua resposta.',
+          '4. Qual Tecnologia você recentemente soube e que mais '
+              'gostou ou se interessou?',
+          type: TypeQuestionForms.text.toTypeQuestion,
+        ),
+      ),
+    ),
+    realm.write<Question>(
+      () => realm.add<Question>(
+        update: true,
+        Question(
+          Uuid.v4(),
+          auth.id,
+          'Digite sua resposta.',
+          '5. Qual tecnologia você compraria com '
+              'certeza para sua propriedade?',
+          type: TypeQuestionForms.text.toTypeQuestion,
+        ),
+      ),
+    ),
+  ];
+  final status = StatusForms.active.toStatus;
+  realm.write(
+    () => realm.add(
+      update: true,
+      Forms(
+        Uuid.v4(),
+        auth.id,
+        'Terrus Formulário',
+        status: status,
+        questions: questions,
+      ),
+    ),
+  );
 }
 
 Future<Realm> getRealmInstanceTest() async {

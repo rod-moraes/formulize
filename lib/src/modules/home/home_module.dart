@@ -29,7 +29,7 @@ class HomeModule extends Module {
         Bind.singleton((i) => HomeAtomic()),
 
         // reducers
-        Bind.singleton((i) => HomeReducer(i(), i())),
+        Bind.singleton((i) => HomeReducer(i(), i(), i())),
       ];
   @override
   List<ModularRoute> get routes => [

@@ -5,6 +5,7 @@ class _Question {
   @PrimaryKey()
   @MapTo('_id')
   late Uuid id;
+  late String idDevice;
   late String hint;
   late String label;
   late _TypeQuestion? type;

@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: forms.length,
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemBuilder: (context, index) {
                       final form = forms[index];
                       return Card(

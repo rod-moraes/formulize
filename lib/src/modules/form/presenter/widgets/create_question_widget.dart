@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formulize/src/shared/infra/services/realm/realm_config.dart';
 
 import '../../../../shared/infra/services/realm/models/generate/realm_models.dart';
 
@@ -100,6 +101,7 @@ class _CreateQuestionWidgetState extends State<CreateQuestionWidget> {
                     widget.onSaved(
                       Question(
                         question.id,
+                        auth.id,
                         hint,
                         label,
                         type: typeQuestion.toTypeQuestion,

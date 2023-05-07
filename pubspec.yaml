@@ -30,9 +30,26 @@ dev_dependencies:
   flutterando_analysis: ^0.0.2
   rx_notifier_generator: ^1.0.1
   build_runner: ^2.3.3
+  flutter_launcher_icons: "^0.11.0"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logos/ic_launcher.png"
+  web:
+    generate: true
+    image_path: "assets/logos/ic_launcher.png"
+  windows:
+    generate: true
+    image_path: "assets/logos/ic_launcher.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/logos/ic_launcher.png"
 
 flutter:
   uses-material-design: true
   assets:
     - lib/i18n/
     - .env
+    - assets/logos/

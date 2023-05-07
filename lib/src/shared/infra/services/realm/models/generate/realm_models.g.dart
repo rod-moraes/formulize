@@ -204,6 +204,7 @@ class Question extends _Question
 
   Question(
     Uuid id,
+    String idDevice,
     String hint,
     String label, {
     TypeQuestion? type,
@@ -215,6 +216,7 @@ class Question extends _Question
       });
     }
     RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'idDevice', idDevice);
     RealmObjectBase.set(this, 'hint', hint);
     RealmObjectBase.set(this, 'label', label);
     RealmObjectBase.set(this, 'type', type);
@@ -227,6 +229,12 @@ class Question extends _Question
   Uuid get id => RealmObjectBase.get<Uuid>(this, '_id') as Uuid;
   @override
   set id(Uuid value) => RealmObjectBase.set(this, '_id', value);
+
+  @override
+  String get idDevice =>
+      RealmObjectBase.get<String>(this, 'idDevice') as String;
+  @override
+  set idDevice(String value) => RealmObjectBase.set(this, 'idDevice', value);
 
   @override
   String get hint => RealmObjectBase.get<String>(this, 'hint') as String;
@@ -264,6 +272,7 @@ class Question extends _Question
     return const SchemaObject(ObjectType.realmObject, Question, 'Question', [
       SchemaProperty('id', RealmPropertyType.uuid,
           mapTo: '_id', primaryKey: true),
+      SchemaProperty('idDevice', RealmPropertyType.string),
       SchemaProperty('hint', RealmPropertyType.string),
       SchemaProperty('label', RealmPropertyType.string),
       SchemaProperty('type', RealmPropertyType.object,
@@ -278,6 +287,7 @@ class Answer extends _Answer with RealmEntity, RealmObjectBase, RealmObject {
 
   Answer(
     Uuid id,
+    String idDevice,
     String answer, {
     Question? question,
     bool isDeleted = false,
@@ -289,6 +299,7 @@ class Answer extends _Answer with RealmEntity, RealmObjectBase, RealmObject {
       });
     }
     RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'idDevice', idDevice);
     RealmObjectBase.set(this, 'question', question);
     RealmObjectBase.set(this, 'answer', answer);
     RealmObjectBase.set(this, 'isDeleted', isDeleted);
@@ -302,6 +313,12 @@ class Answer extends _Answer with RealmEntity, RealmObjectBase, RealmObject {
   Uuid get id => RealmObjectBase.get<Uuid>(this, '_id') as Uuid;
   @override
   set id(Uuid value) => RealmObjectBase.set(this, '_id', value);
+
+  @override
+  String get idDevice =>
+      RealmObjectBase.get<String>(this, 'idDevice') as String;
+  @override
+  set idDevice(String value) => RealmObjectBase.set(this, 'idDevice', value);
 
   @override
   Question? get question =>
@@ -341,6 +358,7 @@ class Answer extends _Answer with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Answer, 'Answer', [
       SchemaProperty('id', RealmPropertyType.uuid,
           mapTo: '_id', primaryKey: true),
+      SchemaProperty('idDevice', RealmPropertyType.string),
       SchemaProperty('question', RealmPropertyType.object,
           optional: true, linkTarget: 'Question'),
       SchemaProperty('answer', RealmPropertyType.string),
@@ -357,6 +375,7 @@ class AnswerHead extends _AnswerHead
 
   AnswerHead(
     Uuid id,
+    String idDevice,
     String name,
     String email, {
     bool isDeleted = false,
@@ -368,6 +387,7 @@ class AnswerHead extends _AnswerHead
       });
     }
     RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'idDevice', idDevice);
     RealmObjectBase.set(this, 'name', name);
     RealmObjectBase.set(this, 'email', email);
     RealmObjectBase.set(this, 'isDeleted', isDeleted);
@@ -381,6 +401,12 @@ class AnswerHead extends _AnswerHead
   Uuid get id => RealmObjectBase.get<Uuid>(this, '_id') as Uuid;
   @override
   set id(Uuid value) => RealmObjectBase.set(this, '_id', value);
+
+  @override
+  String get idDevice =>
+      RealmObjectBase.get<String>(this, 'idDevice') as String;
+  @override
+  set idDevice(String value) => RealmObjectBase.set(this, 'idDevice', value);
 
   @override
   String get name => RealmObjectBase.get<String>(this, 'name') as String;
@@ -419,6 +445,7 @@ class AnswerHead extends _AnswerHead
         ObjectType.realmObject, AnswerHead, 'AnswerHead', [
       SchemaProperty('id', RealmPropertyType.uuid,
           mapTo: '_id', primaryKey: true),
+      SchemaProperty('idDevice', RealmPropertyType.string),
       SchemaProperty('name', RealmPropertyType.string),
       SchemaProperty('email', RealmPropertyType.string),
       SchemaProperty('answers', RealmPropertyType.object,
@@ -433,6 +460,7 @@ class Forms extends _Forms with RealmEntity, RealmObjectBase, RealmObject {
 
   Forms(
     Uuid id,
+    String idDevice,
     String title, {
     Status? status,
     bool isDeleted = false,
@@ -445,6 +473,7 @@ class Forms extends _Forms with RealmEntity, RealmObjectBase, RealmObject {
       });
     }
     RealmObjectBase.set(this, '_id', id);
+    RealmObjectBase.set(this, 'idDevice', idDevice);
     RealmObjectBase.set(this, 'title', title);
     RealmObjectBase.set(this, 'status', status);
     RealmObjectBase.set(this, 'isDeleted', isDeleted);
@@ -460,6 +489,12 @@ class Forms extends _Forms with RealmEntity, RealmObjectBase, RealmObject {
   Uuid get id => RealmObjectBase.get<Uuid>(this, '_id') as Uuid;
   @override
   set id(Uuid value) => RealmObjectBase.set(this, '_id', value);
+
+  @override
+  String get idDevice =>
+      RealmObjectBase.get<String>(this, 'idDevice') as String;
+  @override
+  set idDevice(String value) => RealmObjectBase.set(this, 'idDevice', value);
 
   @override
   String get title => RealmObjectBase.get<String>(this, 'title') as String;
@@ -505,6 +540,7 @@ class Forms extends _Forms with RealmEntity, RealmObjectBase, RealmObject {
     return const SchemaObject(ObjectType.realmObject, Forms, 'Forms', [
       SchemaProperty('id', RealmPropertyType.uuid,
           mapTo: '_id', primaryKey: true),
+      SchemaProperty('idDevice', RealmPropertyType.string),
       SchemaProperty('title', RealmPropertyType.string),
       SchemaProperty('status', RealmPropertyType.object,
           optional: true, linkTarget: 'Status'),

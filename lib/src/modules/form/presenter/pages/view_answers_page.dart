@@ -18,7 +18,7 @@ class _ViewAnswersPageState extends State<ViewAnswersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Novo formulário'),
+        title: Text('Resposta do ${widget.forms.title}'),
       ),
       body: ListView.builder(
         itemCount: widget.forms.answers.length,
@@ -28,7 +28,7 @@ class _ViewAnswersPageState extends State<ViewAnswersPage> {
           final email = answer.email.isEmpty ? 'Sem e-mail' : answer.email;
           return ExpansionTile(
             title: ListTile(
-              title: Text('Name: $name'),
+              title: Text('Nome: $name'),
               subtitle: Text('E-mail: $email'),
             ),
             expandedAlignment: Alignment.topLeft,
@@ -37,15 +37,26 @@ class _ViewAnswersPageState extends State<ViewAnswersPage> {
             children: [
               Text('Id: ${answer.id}'),
               const SizedBox(height: 8),
-              Text('Name: $name'),
+              Text('Nome: $name'),
               const SizedBox(height: 8),
               Text('E-mail: $email'),
               const SizedBox(height: 8),
               ...answer.answers.map((ans) {
+                final question =
+                    ans.question?.type?.id == TypeQuestionForms.text.id
+                        ? 'Pergunta: ${ans.question?.label}'
+                        : 'Pergunta: ${ans.question?.hint}';
+
+                final response =
+                    ans.question?.type?.id == TypeQuestionForms.checkbox.id ||
+                            ans.question?.type?.id ==
+                                TypeQuestionForms.switchType.id
+                        ? 'Resposta: ${ans.answer == '1' ? "Sim" : "Não"}'
+                        : 'Resposta: ${ans.answer}';
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Pergunta: ${ans.question?.label}\nResposta: ${ans.answer}',
+                    '$question\n$response',
                   ),
                 );
               })
