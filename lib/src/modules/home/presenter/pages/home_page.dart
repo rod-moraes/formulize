@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:formulize/src/shared/infra/services/realm/models/generate/realm_models.dart';
 import 'package:formulize/src/shared/presenter/widgets/drawer_global.dart';
+import 'package:rx_notifier/rx_notifier.dart';
+
+import '../../../../shared/presenter/atoms/app_atomic.dart';
+import '../atoms/home_atomic.dart';
+import '../enums/filter_forms_enum.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,7 +16,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final segmentIndex = ValueNotifier({0});
+  final atomic = Modular.get<HomeAtomic>();
+  final appAtomic = Modular.get<AppAtomic>();
+
+  @override
+  void initState() {
+    super.initState();
+    atomic.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,34 +35,92 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            ValueListenableBuilder(
-              builder: (context, _, __) {
+            RxBuilder(
+              builder: (context) {
+                final filter = atomic.filter.value;
                 return Padding(
                   padding: const EdgeInsets.all(8),
-                  child: SegmentedButton<int>(
+                  child: SegmentedButton<FilterFormsEnum>(
                     onSelectionChanged: (value) {
-                      segmentIndex.value = value;
+                      atomic.filter.value = value.first;
                     },
-                    segments: const [
-                      ButtonSegment(value: 0, label: Text('Todos')),
-                      ButtonSegment(value: 1, label: Text('Ativados')),
-                      ButtonSegment(value: 2, label: Text('Desativados')),
-                    ],
-                    selected: segmentIndex.value,
+                    segments: FilterFormsEnum.values
+                        .map(
+                          (mapFilter) => ButtonSegment(
+                            value: mapFilter,
+                            label: Text(mapFilter.label),
+                          ),
+                        )
+                        .toList(),
+                    selected: {filter},
                   ),
                 );
               },
-              valueListenable: segmentIndex,
+            ),
+            RxBuilder(
+              builder: (context) {
+                final forms = atomic.forms.value;
+                final isSuperUser = appAtomic.isValidateUser.value;
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: forms.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    itemBuilder: (context, index) {
+                      final form = forms[index];
+                      return Card(
+                        child: ListTile(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                          ),
+                          onTap: () {},
+                          title: Text(
+                            form.title,
+                          ),
+                          leading: Icon(
+                            form.status?.id == StatusForms.active.toStatus.id
+                                ? Icons.check
+                                : Icons.close,
+                            size: 32,
+                          ),
+                          trailing: isSuperUser
+                              ? IconButton(
+                                  onPressed: () async {
+                                    await Modular.to.pushNamed(
+                                      '../form/edit',
+                                      arguments: form,
+                                    );
+                                    atomic.init();
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                )
+                              : null,
+                          subtitle: Text(
+                            'Questões: ${form.questions.length} - '
+                            'Respostas ${form.answers.length}',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Modular.to.pushNamed('../form/edit');
+      floatingActionButton: RxBuilder(
+        builder: (context) {
+          final isSuperUser = appAtomic.isValidateUser.value;
+          if (!isSuperUser) return const SizedBox.shrink();
+          return FloatingActionButton.extended(
+            onPressed: () async {
+              await Modular.to.pushNamed('../form/edit');
+              atomic.init();
+            },
+            label: const Text('Novo formulário'),
+            icon: const Icon(Icons.edit),
+          );
         },
-        label: const Text('Novo formulário'),
-        icon: const Icon(Icons.edit),
       ),
     );
   }

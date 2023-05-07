@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+
 part of './generate/realm_models.dart';
 
 @RealmModel()
@@ -21,5 +23,13 @@ enum TypeQuestionForms {
 
   TypeQuestion get toTypeQuestion {
     return TypeQuestion(id, name);
+  }
+
+  static TypeQuestionForms? fromQuestion(TypeQuestion? question) {
+    if (question == null) return null;
+    return TypeQuestionForms.values.firstWhere(
+      (element) => element.id == question.id && question.title == element.name,
+      orElse: () => TypeQuestionForms.text,
+    );
   }
 }

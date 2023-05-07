@@ -23,7 +23,10 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         // services
-        AsyncBind<Realm>((i) async => getRealmInstance()),
+        AsyncBind<Realm>((i) async {
+          final realm = await getRealmInstance();
+          return realm;
+        }),
         // datasources
         Bind.factory<IInitialDataDatasource>(
           (i) => InitialDataDatasource(i()),
